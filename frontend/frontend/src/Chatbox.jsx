@@ -32,19 +32,24 @@ const Chatbot = () => {
         messages={messages}
         setCurrentMessageIndex={setCurrentMessageIndex}
       />
-      <Conversation
-        messages={currentMessageIndex !== null ? messages.slice(0, currentMessageIndex + 1) : messages}
-      />
-       <img src={logo} alt="Logo" className="logo" />
-      <form onSubmit={handleSubmit} className="input-form">
-        <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Type a message..."
-        />
-        <button type="submit">Send</button>
-      </form>
+    <div class="container_right">
+      <div class="conversation">
+    <Conversation
+      messages={currentMessageIndex !== null ? messages.slice(0, currentMessageIndex + 1) : messages}
+    />
+  </div>
+  <form onSubmit={handleSubmit} class="input-form">
+    <input
+      type="text"
+      value={input}
+      onChange={handleInputChange}
+      placeholder="Type a message..."
+      class="input-field"
+    />
+    <button type="submit" class="send-button" >Send</button>
+  </form>
+  <img src={logo} alt="Logo" class="logo" />
+</div>
     </div>
   );
 };

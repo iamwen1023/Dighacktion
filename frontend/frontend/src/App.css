@@ -50,7 +50,6 @@
 }
 
 .conversation-container {
-  flex: 1;
   display: flex;
   flex-direction: column;
 }
@@ -67,7 +66,7 @@
 }
 
 .input-form input {
-  width: calc(70% - 20px);
+ width: calc(70% - 20px);
   padding: 10px;
   font-size: 16px;
 }
@@ -94,6 +93,61 @@
   height: auto;
 }
 
+.container_right {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+  /* min-height: 100vh; */
+}
+
+.conversation {
+  flex: 1;
+}
+
+.input-form {
+  display: flex; /* Use flexbox */
+}
+
+.input-field,
+.send-button {
+  height: 40px; /* Set the height */
+  font-size: 20px; /* Adjust font size */
+  padding: 10px;
+  border: 1px solid #ccc; /* Add a border for better visibility */
+}
+
+.input-form input {
+  font-size: 20px; /* Adjust the font size */
+  width: calc(100% - 80px); /* Adjust the width as needed */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.input-form button {
+  width: 80px;
+  padding: 10px;
+  font-size: 16px; /* Adjust the font size */
+}
+
+.logo {
+  margin-top: 10px; /* Add some space between the form and the logo */
+}
+
+.input-field {
+  flex: 1; /* Make input field grow to take available space */
+  font-size: 20px; /* Adjust font size */
+  padding: 10px;
+  margin-right: 10px; /* Add some space between input and button */
+}
+
+.send-button {
+  font-size: 16px; /* Adjust font size */
+  padding: 10px;
+  background-color: #007bff; /* Example color */
+  color: white; /* Example color */
+  border: none;
+  cursor: pointer;
+}
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   .chatbot-container {
@@ -129,6 +183,9 @@
 
   .input-form textarea {
     margin-bottom: 10px;
+    height: 200px; /* Adjust the height as needed */
+    width: 100%; /* Adjust the width as needed */
+    resize: vertical; /* Allow vertical resizing */
   }
 
   .logo {
@@ -137,3 +194,4 @@
     margin-right: auto;
   }
 }
+
