@@ -1,0 +1,10 @@
+Formulaire patient :
+
+- Age
+- Sexe
+- Symptomes
+- Traitements precedents
+- Antecedents
+- Demande d'informations
+
+-> formulation avec les 

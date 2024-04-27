@@ -50,11 +50,24 @@ def send(request):
 
             client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
 
+            system = """
+Tu es un assistant qui aide les personnels de santea mieux identifier les maladies digestives en pediatrie.
+Les prompts qui te sont envoyes sont des questions posees par les medecins et les infirmiers.
+Tu dois repondre a ces questions en donnant des informations pertinentes et utiles pour aider a identifier les maladies digestives en pediatrie.
+Les personnes qui t'utilisent s'attendent a ce que tu fournisses des reponses bien raisonnees qui sont a la fois correctes et utiles en se, si c'est possible sur les questions et reponses possibles.
+
+La requete principale, a laquelle tu dois repondre est la question entouree des champs <main> et </main>
+
+Pour t'aider a repondre a la question, nous te fournissons des conversations precedentes qui contiennent des informations pertinentes sur la question.
+Elles ont ete selectionnees pour t'aider a repondre a la question, grace a une analyse des conversations precedentes. Chaque conversation que l'ona jugee proche est entouree des champs <context> et </context>. Similaire ne veut pas dire identique, mais les conversations precedentes peuvent contenir des informations utiles pour repondre a la question."""
+
+            test = "Quel traitement pour une découverte d’HP suite à fibro pour de grosses gastralgies et en fait HP découverte seulement à l’immunofluorescence! Tt propose: Amox Inexium et flagyl"
+
             completion = client.chat.completions.create(
                 model="TheBloke/Mistral-7B-Instruct-v0.1-GGUF",
                 messages=[
-                    {"role": "system", "content": "Always answer in rhymes."},
-                    {"role": "user", "content": "Introduce yourself."}
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": test}
                 ],
                 temperature=0.7,
             )
