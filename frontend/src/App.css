@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* App.css */
+.chatbot-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0 30%;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.conversation-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.input-form {
+  padding: 20px;
+  margin-top: auto; /* Pushes the input to the bottom */
+}
+
+.input-form input {
+  width: calc(70% - 20px);
+  padding: 10px;
+  font-size: 16px;
+}
+
+.input-form button {
+  width: calc(30% - 20px);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.input-form button:hover {
+  background-color: #0056b3;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+  height: auto;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .chatbot-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex: 0 0 100%;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .conversation-container {
+    flex: 1;
+  }
+
+  .input-form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+  }
+
+  .input-form input {
+    width: calc(100% - 20px);
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .input-form button {
+    width: calc(30% - 20px);
+    margin-bottom: 0;
+  }
+
+  .input-form textarea {
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    position: static;
+    margin-top: 20px;
+    margin-right: auto;
+  }
+}
