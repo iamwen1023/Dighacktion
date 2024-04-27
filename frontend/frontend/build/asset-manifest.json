@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e93b7add.css",
+    "main.js": "/static/js/main.b692ea35.js",
+    "static/js/317.c2f309b3.chunk.js": "/static/js/317.c2f309b3.chunk.js",
+    "static/media/CrossDoc-logo.svg": "/static/media/CrossDoc-logo.e66a9796e7eb72b4827ba87d3f0ca0e3.svg",
+    "index.html": "/index.html",
+    "main.e93b7add.css.map": "/static/css/main.e93b7add.css.map",
+    "main.b692ea35.js.map": "/static/js/main.b692ea35.js.map",
+    "317.c2f309b3.chunk.js.map": "/static/js/317.c2f309b3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e93b7add.css",
+    "static/js/main.b692ea35.js"
+  ]
+}
