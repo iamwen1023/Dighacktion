@@ -1,4 +1,9 @@
 import pandas
+import os
+from langchain_community.utilities import SQLDatabase
+from sqlalchemy import create_engine
+from langchain.chains import create_sql_query_chain
+from langchain_openai import ChatOpenAI
 
 
 if __name__ == '__main__':
@@ -17,13 +22,28 @@ if __name__ == '__main__':
     answers = answers[~answers['details'].str.contains('merci')]
     # print(answers.head())
 
-    # merged_df = pandas.merge(questions, answers, left_on='id', right_on='question_id', how='inner')
+    merged_df = pandas.merge(
+        questions, answers, left_on="id", right_on="question_id", how="inner"
+    )
 
-    # Iterate aver the questions and answers, and create a new dataframe
-    new_df = pandas.DataFrame(columns=["conversation_id", "user_id",])
+    for index, row in merged_df.iterrows():
+        print(row)
+        print("=====================================")
+        content = row['question']
+
+    engine = create_engine('sqlite:///qa.db')
+    merged_df.to_sql('qa', con=engine, if_exists='replace')
+
+    db = SQLDatabase(engine=engine)
+    test = db.run("SELECT COUNT(*) FROM qa")
+
+    # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+    llm = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+    chain = create_sql_query_chain(llm, db)
 
 
-    print(merged_df.head())
+
+
     # df = pd.read_csv("titanic.csv")
     # print(df.shape)
     # print(df.columns.tolist())

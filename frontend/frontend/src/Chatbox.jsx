@@ -4,21 +4,57 @@ import History from "./History";
 import Conversation from "./Conversation";
 import logo from "./CrossDoc-logo.svg";
 
+
+// Function to get the CSRF token from the cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 const Chatbot = () => {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState("");
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(null);
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+    const handleInputChange = (e) => {
+        setInput(e.target.value);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    setMessages([...messages, { text: input, isUser: true }]);
-    simulateBotResponse(input);
-    setInput("");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+        setMessages([...messages, { text: input, isUser: true }]);
+        // Send the user message to the server on localhost:8000/send with axios
+        fetch("http://localhost:8000/send/", {
+            method: "POST",
+            credentials: 'include',
+            body: JSON.stringify({ message: input }),
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')  // Make sure to define getCookie() function
+
+            }
+        })
+        .then((response) => response.text())
+        .then((text) => {
+            setMessages([...messages, { text: text, isUser: false }]);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+    // simulateBotResponse(input);
   };
 
   const simulateBotResponse = (userMessage) => {

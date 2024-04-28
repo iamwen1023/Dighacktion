@@ -1,10 +1,28 @@
-{% comment %} Question form  {% endcomment %}
+{% extends "chat/templates/base.html" %}
 
-<form id="question-form" method="post" action="{% url 'send' %}">
-    {% csrf_token %}
 
-    {% for field in form %}
-        {{ field }}
-    {% endfor %}
-    <button type="submit">Ask</button>
-</form>
+{% block content %}
+
+<div>
+    <h1>Chat</h1>
+    <div id="chat">
+        {% for message in messages %}
+            <div class="message">
+                {% if message.is_prompt is True %}
+                    <span class="prompt">{{ message.content }}</span>
+                {% else %}
+                    <span class="response">{{ message.content }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <form id="question-form" method="post" action="{% url 'send' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field }}
+        {% endfor %}
+        <button type="submit">Ask</button>
+    </form>
+</div>
+
+{% endblock %}

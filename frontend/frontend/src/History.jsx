@@ -6,11 +6,11 @@ const Sidebar = ({ messages, setCurrentMessageIndex }) => {
     <div className="sidebar">
       <h2>Message History</h2>
       <ul>
-        {messages.map((message, index) => (
+        {/* {messages.map((message, index) => (
           <li key={index} onClick={() => setCurrentMessageIndex(index)}>
             {message.text}
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
