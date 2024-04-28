@@ -110,10 +110,8 @@
 
 .input-field,
 .send-button {
-  height: 40px; /* Set the height */
+
   font-size: 20px; /* Adjust font size */
-  padding: 10px;
-  border: 1px solid #ccc; /* Add a border for better visibility */
 }
 
 .input-form input {
@@ -142,12 +140,65 @@
 
 .send-button {
   font-size: 16px; /* Adjust font size */
-  padding: 10px;
   background-color: #007bff; /* Example color */
   color: white; /* Example color */
   border: none;
   cursor: pointer;
 }
+
+
+h2 {
+  margin-bottom: 10px;
+}
+h3 {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message-item {
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.date-heading {
+  font-size: 14px; /* smaller font size */
+  text-align: right; /* align to the right */
+}
+
+.conversation-messages {
+  padding: 10px;
+}
+
+.user {
+  background-color: #d4f4e8; /* light green */
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.bot {
+  background-color: #bfd2f4; /* light blue */
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+
+.svg-icon {
+  width: 10px; /* Set the desired width */
+  height: 10px; /* Set the desired height */
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   .chatbot-container {
@@ -159,6 +210,7 @@
     border-right: none;
     border-bottom: 1px solid #ccc;
   }
+  
 
   .conversation-container {
     flex: 1;
