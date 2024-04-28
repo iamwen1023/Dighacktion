@@ -29,7 +29,9 @@ if __name__ == '__main__':
     for index, row in merged_df.iterrows():
         print(row)
         print("=====================================")
+        conversation = f"conv_{row}.md"
         content = row['question']
+
 
     engine = create_engine('sqlite:///qa.db')
     merged_df.to_sql('qa', con=engine, if_exists='replace')
