@@ -26,24 +26,46 @@ if __name__ == '__main__':
         questions, answers, left_on="id", right_on="question_id", how="inner"
     )
 
-    for index, row in merged_df.iterrows():
+    for index, row in questions.iterrows():
+
         print(row)
         print("=====================================")
-        conversation = f"conv_{row}.md"
-        content = row['question']
 
+        path = f"../RAG/data/question_{row['id']}.md"
 
-    engine = create_engine('sqlite:///qa.db')
-    merged_df.to_sql('qa', con=engine, if_exists='replace')
+        content = str(row['title']) + ":\n" + str(row['details'])
 
-    db = SQLDatabase(engine=engine)
-    test = db.run("SELECT COUNT(*) FROM qa")
+        with open(path, "w") as f:
+            f.write(content)
+            f.write("\n\n")
 
-    # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
-    llm = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
-    chain = create_sql_query_chain(llm, db)
+    for index, row in answers.iterrows():
 
+        print(row)
+        print("=====================================")
 
+        path = f"../RAG/data/question_{row['question_id']}.md"
+        content = str(row['details'])
+
+        with open(path, "a") as f:
+            f.write(content)
+
+        # conversation = f"conv_{row['id_x']}.md"
+
+        # content = row['title'] + " " + str(row['details_x'])
+
+        # with open(conversation, "a") as f:
+            # f.write(f"question: {content}\n")
+
+    # engine = create_engine('sqlite:///qa.db')
+    # merged_df.to_sql('qa', con=engine, if_exists='replace')
+
+    # db = SQLDatabase(engine=engine)
+    # test = db.run("SELECT COUNT(*) FROM qa")
+
+    # # llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+    # llm = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+    # chain = create_sql_query_chain(llm, db)
 
 
     # df = pd.read_csv("titanic.csv")

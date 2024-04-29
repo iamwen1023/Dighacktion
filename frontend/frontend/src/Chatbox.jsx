@@ -34,8 +34,9 @@ const Chatbot = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setMessages(prevMessages => [...prevMessages, { text: input, isUser: true }]);
+        setInput("");
         if (!input.trim()) return;
-        setMessages([...messages, { text: input, isUser: true }]);
         // Send the user message to the server on localhost:8000/send with axios
         fetch("http://localhost:8000/send/", {
             method: "POST",
@@ -48,7 +49,7 @@ const Chatbot = () => {
         })
         .then((response) => response.text())
         .then((text) => {
-            setMessages([...messages, { text: text, isUser: false }]);
+            setMessages(prevMessages => [...prevMessages, { text: text, isUser: false }]);
         })
         .catch((error) => {
           console.error("Error:", error);
